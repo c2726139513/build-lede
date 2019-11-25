@@ -18,21 +18,21 @@ jobs:
     - name: Clone source
       run: |
         cd /home/runner
-        git clone https://github.com/RealKiro/lede.git
-        sudo chmod -R 777 lede
-        sudo chown -R runner:runner lede
-        cd /home/runner/lede
+        git clone https://github.com/openwrt/openwrt.git
+        sudo chmod -R 777 openwrt
+        sudo chown -R runner:runner openwrt
+        cd /home/runner/openwrt
         ./scripts/feeds update -a 
         ./scripts/feeds install -a
     - name: Clone config
       run: |
-        cd /home/runner/lede/
-        wget https://raw.githubusercontent.com/RealKiro/build-lede/master/.config
+        cd /home/runner/openwrt/
+        wget https://raw.githubusercontent.com/c2726139513/build-lede/master/.config
     - name: Build
       run: | 
-        cd /home/runner/lede 
+        cd /home/runner/openwrt
         make -j1 V=s
     - uses: actions/upload-artifact@master
       with:
         name: Newifi3
-        path: /home/runner/lede/bin
+        path: /home/runner/openwrt/bin
