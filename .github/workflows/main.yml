@@ -1,4 +1,4 @@
-name: lede
+name: OpenWrt
 
 on:
   push:
